@@ -6,6 +6,9 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.productapp.FakeProducts.allProducts
 import com.example.productapp.FakeProducts.firstProduct
 import com.example.productapp.FakeProducts.searchedProducts
+import com.example.productapp.detail.DetailPage
+import com.example.productapp.favorite.FavoritePage
+import com.example.productapp.product.ProductListPage
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
