@@ -8,13 +8,12 @@ import androidx.test.espresso.matcher.ViewMatchers.withParent
 import com.example.productapp.Product
 import com.example.productapp.R
 import com.example.productapp.core.ButtonUi
-import com.example.productapp.detail.TextUi
 import com.example.productapp.product.ProductListUi
 import org.hamcrest.Matcher
 
 class FavoritePage(products: List<Product>) {
 
-    private val containerIdMatcher: Matcher<View> = withParent(withId(R.id.productListLayout))
+    private val containerIdMatcher: Matcher<View> = withParent(withId(R.id.favoriteLayout))
     private val classTypeMatcher: Matcher<View> =
         withParent(isAssignableFrom(LinearLayout::class.java))
 
@@ -24,13 +23,13 @@ class FavoritePage(products: List<Product>) {
         classTypeMatcher = classTypeMatcher
     )
 
-    private val headerUi = TextUi(
+    private val headerUi = FavoriteTextUi(
         id = R.id.header,
         text = R.string.headerFavorite,
         containerIdMatcher = containerIdMatcher,
         classTypeMatcher = classTypeMatcher
     )
-    private val emptyFavorite = TextUi(
+    private val emptyFavorite = FavoriteTextUi(
         id = R.id.emptyText,
         text = R.string.emptyFavorite,
         containerIdMatcher = containerIdMatcher,

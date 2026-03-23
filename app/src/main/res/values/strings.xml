@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ProductApp</string>
+    <string name="retry">Retry</string>
+    <string name="incorrect_loading">Incorrect loading</string>
+    <string name="headerFavorite">Liked Product</string>
+    <string name="emptyFavorite">no liked product</string>
 </resources>
