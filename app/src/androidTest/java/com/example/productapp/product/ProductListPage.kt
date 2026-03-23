@@ -67,11 +67,13 @@ class ProductListPage(products: List<Product>) {
     fun assertLoadingState() {
         loadingUi.assertVisible()
         errorUi.assertNotVisible()
+        retryButtonUi.assertNotVisible()
     }
 
     fun assertErrorState() {
-        errorUi.assertVisible()
         loadingUi.assertNotVisible()
+        errorUi.assertVisible()
+        retryButtonUi.assertVisible()
     }
 
     fun addInput(text: String) {

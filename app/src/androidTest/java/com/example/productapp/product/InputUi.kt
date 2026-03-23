@@ -1,6 +1,6 @@
 package com.example.productapp.product
 
-import android.widget.SearchView
+import android.widget.EditText
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -12,7 +12,7 @@ class InputUi : AbstractVisibility(
     interaction = onView(
         allOf(
             withId(R.id.searchInput),
-            isAssignableFrom(SearchView::class.java),
+            isAssignableFrom(EditText::class.java),
         )
     )
 ) {
