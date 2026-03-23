@@ -7,6 +7,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withParent
 import com.example.productapp.Product
 import com.example.productapp.R
+import com.example.productapp.core.ButtonUi
 import org.hamcrest.Matcher
 
 class DetailPage(product: Product) {
@@ -32,13 +33,14 @@ class DetailPage(product: Product) {
         classTypeMatcher = classTypeMatcher
     )
     private val titleUi = TextUi(
-        R.id.title,
+        id = R.id.title,
         text = product.title,
         containerIdMatcher = containerIdMatcher,
         classTypeMatcher = classTypeMatcher
     )
     private val description = TextUi(
-        R.id.description,
+        id = R.id.description,
+        text = product.description,
         containerIdMatcher = containerIdMatcher,
         classTypeMatcher = classTypeMatcher
     )
@@ -46,7 +48,7 @@ class DetailPage(product: Product) {
     fun assertDetailState() {
         backButton.assertVisible()
         recipeLikeUi.assertVisible()
-        imageUi.assertVisible()
+        imageUi.assertVisibleImage()
         titleUi.assertVisible()
         description.assertVisible()
     }
