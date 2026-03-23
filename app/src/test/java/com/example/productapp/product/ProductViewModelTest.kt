@@ -30,8 +30,8 @@ class ProductViewModelTest {
     fun caseNumber1() {
         viewModel.init()
         runAsync.returnResult()
-        var actual: ProductUiState = observable.postUiStateCalledList.last()
-        var expected: ProductUiState = ProductUiState.Initial(
+        var actual: ProductListUiState = observable.postUiStateCalledList.last()
+        var expected: ProductListUiState = ProductListUiState.Initial(
             id = "1",
             title = "Essence Mascara Lash Princess",
             url = "https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/1.webp",
@@ -43,26 +43,26 @@ class ProductViewModelTest {
         viewModel.like(index = 0)
         runAsync.returnResult()
         actual = observable.postUiStateCalledList.last()
-        expected = ProductUiState.ProductCardLikeState
+        expected = ProductListUiState.ProductCardLikeState(0)
         assertEquals(expected, actual)
 
         viewModel.unlike(index = 0)
         runAsync.returnResult()
         actual = observable.postUiStateCalledList.last()
-        expected = ProductUiState.ProductCardUnLikeState
+        expected = ProductListUiState.ProductCardUnLikeState(0)
         assertEquals(expected, actual)
 
         viewModel.favoriteLoad()
         runAsync.returnResult()
         actual = observable.postUiStateCalledList.last()
-        expected = DetailUiState.FavoriteLoad
+        expected = ProductListUiState.FavoriteLoad
         assertEquals(expected, actual)
         assertEquals(true, repository.clearCalled)
 
         viewModel.detailLoad()
         runAsync.returnResult()
         actual = observable.postUiStateCalledList.last()
-        expected = ProductUiState.DetailLoad
+        expected = ProductListUiState.DetailLoad
         assertEquals(expected, actual)
         assertEquals(true, repository.clearCalled)
     }
