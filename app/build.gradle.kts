@@ -1,19 +1,24 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.google.ksp)
 }
 
 android {
     namespace = "com.example.productapp"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
+    compileSdk = 35
+
+    packaging {
+        resources {
+            excludes += "META-INF/versions/9/OSGI-INF/MANIFEST.MF"
+
         }
     }
 
     defaultConfig {
         applicationId = "com.example.productapp"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -30,18 +35,38 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+    testOptions {
+        animationsDisabled = true
+    }
+
 }
 
 dependencies {
+    implementation(libs.androidx.room.ktx)
+    androidTestImplementation(libs.androidx.room.testing)
+    ksp(libs.androidx.room.compiler)
+
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
+    implementation(libs.gson)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    testImplementation(kotlin("test"))
 }
