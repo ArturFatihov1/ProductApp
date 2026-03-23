@@ -7,6 +7,9 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withParent
 import com.example.productapp.Product
 import com.example.productapp.R
+import com.example.productapp.core.ButtonUi
+import com.example.productapp.detail.TextUi
+import com.example.productapp.product.ProductListUi
 import org.hamcrest.Matcher
 
 class FavoritePage(products: List<Product>) {
@@ -22,12 +25,14 @@ class FavoritePage(products: List<Product>) {
     )
 
     private val headerUi = TextUi(
-        R.id.header,
+        id = R.id.header,
+        text = R.string.headerFavorite,
         containerIdMatcher = containerIdMatcher,
         classTypeMatcher = classTypeMatcher
     )
     private val emptyFavorite = TextUi(
         id = R.id.emptyText,
+        text = R.string.emptyFavorite,
         containerIdMatcher = containerIdMatcher,
         classTypeMatcher = classTypeMatcher
     )
@@ -48,7 +53,7 @@ class FavoritePage(products: List<Product>) {
     }
 
     fun clickFirstRecipe() {
-        productListUi.click()
+        productListUi.clickFirstProduct()
     }
 
     fun assertFavoritesEmptyState() {

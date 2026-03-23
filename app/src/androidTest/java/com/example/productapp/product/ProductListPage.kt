@@ -7,6 +7,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withParent
 import com.example.productapp.Product
 import com.example.productapp.R
+import com.example.productapp.core.ButtonUi
 import org.hamcrest.Matcher
 
 class ProductListPage(products: List<Product>) {
@@ -19,7 +20,7 @@ class ProductListPage(products: List<Product>) {
         containerIdMatcher = containerIdMatcher,
         classTypeMatcher = classTypeMatcher
     )
-    private val retryButtonUi = ButtonUi(
+    private val retryButtonUi = RetryButtonUi(
         id = R.id.retryButton,
         containerIdMatcher = containerIdMatcher,
         classTypeMatcher = classTypeMatcher
