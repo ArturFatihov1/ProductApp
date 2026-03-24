@@ -76,15 +76,15 @@ private class FakeRepository : DetailRepository {
     private var index = 0
     private var like = false
 
-    override suspend fun recipe(): Recipe {
+    override suspend fun product(): Product {
         return list[index]
     }
 
-    override fun likeRecipe() {
+    override fun likeProduct() {
         like = true
     }
 
-    override fun unLikeRecipe() {
+    override fun unLikeProduct() {
         like = false
     }
 
