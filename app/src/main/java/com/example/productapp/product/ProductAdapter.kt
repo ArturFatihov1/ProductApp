@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.productapp.R
 import com.example.productapp.databinding.ItemProductLayoutBinding
+import com.example.productapp.views.text.UpdateText
 
 class ProductAdapter(
     private val onProductClick: (Int) -> Unit,

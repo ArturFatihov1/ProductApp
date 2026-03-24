@@ -2,6 +2,8 @@ package com.example.productapp.favorite
 
 import com.example.productapp.product.ProductItemUiState
 import com.example.productapp.product.UpdateProductList
+import com.example.productapp.views.visibility.UpdateVisibility
+import com.example.productapp.views.visibility.VisibilityUiState
 
 interface FavoriteUiState {
     fun show(

@@ -5,12 +5,12 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <ProgressBar
+    <com.example.productapp.views.progress.LoadView
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <TextView
+    <com.example.productapp.views.error.ErrorView
         android:id="@+id/errorText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
