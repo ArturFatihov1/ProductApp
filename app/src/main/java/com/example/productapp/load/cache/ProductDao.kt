@@ -1,0 +1,31 @@
+package com.example.productapp.load.cache
+
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+
+@Dao
+interface ProductDao {
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun saveProducts(products: List<ProductCache>)
+
+    @Query("SELECT * FROM products_table")
+    suspend fun allProducts(): List<ProductCache>
+
+    @Query("SELECT * FROM products_table WHERE title LIKE '%' || :query || '%'")
+    suspend fun searchProducts(query: String): List<ProductCache>
+
+    @Query("SELECT * FROM products_table WHERE isFavorite = 1")
+    suspend fun favoriteProducts(): List<ProductCache>
+
+    @Query("SELECT * FROM products_table WHERE id = :id")
+    suspend fun productById(id: Int): ProductCache
+
+    @Query("UPDATE products_table SET isFavorite = :isFavorite WHERE id = :id")
+    suspend fun updateFavoriteStatus(id: Int, isFavorite: Boolean)
+
+    @Query("SELECT isFavorite FROM products_table WHERE id = :id")
+    suspend fun isProductFavorite(id: Int): Boolean
+}
