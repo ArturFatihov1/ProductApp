@@ -1,5 +1,7 @@
 package com.example.productapp.product
 
+import com.example.productapp.views.text.UpdateText
+
 
 interface ProductListUiState {
 

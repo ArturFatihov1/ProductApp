@@ -1,7 +1,7 @@
 package com.example.productapp.detail
 
 import com.example.productapp.product.UpdateLikeIcon
-import com.example.productapp.product.UpdateText
+import com.example.productapp.views.text.UpdateText
 
 
 interface DetailUiState {
