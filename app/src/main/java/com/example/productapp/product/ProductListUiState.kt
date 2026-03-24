@@ -2,36 +2,34 @@ package com.example.productapp.product
 
 import com.example.productapp.views.text.UpdateText
 
-
 interface ProductListUiState {
-
-    fun update(
-        searchInput: UpdateText,
-        productList: UpdateProductList
-    ) = Unit
-
-    fun navigate(navigate: NavigateToFavorites) = Unit
-    fun navigateToDetail(navigate: NavigateToDetail) = Unit
+    fun update(searchInput: UpdateText, productList: UpdateProductList, favCountView: UpdateText)
 
     data class Base(
-        private val products: List<ProductItemUiState>
+        val products: List<ProductItemUiState>,
+        val favoriteCount: Int,
+        val query: String
     ) : ProductListUiState {
-        override fun update(searchInput: UpdateText, productList: UpdateProductList) {
+        override fun update(
+            searchInput: UpdateText,
+            productList: UpdateProductList,
+            favCountView: UpdateText
+        ) {
             productList.update(products)
+            favCountView.update(if (favoriteCount > 0) favoriteCount.toString() else "")
+            searchInput.update(query)
         }
     }
 
-    object FavoriteLoad : ProductListUiState {
-        override fun navigate(navigate: NavigateToFavorites) {
-            navigate.navigateToFavorites()
-        }
-    }
-
-    data class DetailLoad(
-        val productId: Int
-    ) : ProductListUiState {
-        override fun navigateToDetail(navigate: NavigateToDetail) {
-            navigate.navigateToDetail(productId)
+    object Empty : ProductListUiState {
+        override fun update(
+            searchInput: UpdateText,
+            productList: UpdateProductList,
+            favCountView: UpdateText
+        ) {
+            productList.update(emptyList())
+            favCountView.update("")
+            searchInput.update("")
         }
     }
 }

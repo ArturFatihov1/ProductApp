@@ -1,6 +1,8 @@
 package com.example.productapp.favorite
 
-import com.example.productapp.core.ProductData
+import com.example.productapp.load.cache.ProductDao
+import com.example.productapp.load.cache.toData
+import com.example.productapp.product.ProductData
 
 interface FavoriteRepository {
     suspend fun favorites(): List<ProductData>

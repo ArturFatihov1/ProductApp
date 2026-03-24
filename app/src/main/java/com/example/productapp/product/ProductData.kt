@@ -1,4 +1,4 @@
-package com.example.productapp.core
+package com.example.productapp.product
 
 data class ProductData(
     val id: Int,

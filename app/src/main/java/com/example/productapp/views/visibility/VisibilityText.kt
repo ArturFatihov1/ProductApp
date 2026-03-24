@@ -3,9 +3,9 @@ package com.example.productapp.views.visibility
 import android.content.Context
 import android.os.Parcelable
 import android.util.AttributeSet
-import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatTextView
 
-class VisibilityButton : AppCompatButton, UpdateVisibility {
+class VisibilityText : AppCompatTextView, UpdateVisibility {
 
     private lateinit var state: VisibilityUiState
 

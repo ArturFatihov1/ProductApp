@@ -1,6 +1,7 @@
 package com.example.productapp.load
 
 import com.example.productapp.R
+import com.example.productapp.product.presentation.NavigateToProductList
 import com.example.productapp.views.error.ErrorUiState
 import com.example.productapp.views.error.UpdateError
 import com.example.productapp.views.visibility.UpdateVisibility

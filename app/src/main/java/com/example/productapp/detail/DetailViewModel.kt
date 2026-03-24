@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.productapp.core.RunAsync
 
 class DetailViewModel(
-    private val productId: Int,
     private val repository: DetailRepository,
     private val runAsync: RunAsync
 ) : ViewModel() {
@@ -15,43 +14,40 @@ class DetailViewModel(
 
     fun init() {
         if (liveData.value == null) {
-            runAsync.handleAsync<DetailUiState>(viewModelScope, {
-                val data = repository.product(productId)
-                val isFavorite = repository.isFavorite(productId)
-
-                DetailUiState.Base(
-                    id = data.id,
-                    title = data.title,
-                    description = data.description,
-                    price = data.price,
-                    stock = data.stock,
-                    images = data.images,
-                    isFavorite = isFavorite
-                )
-            }) { state ->
-                liveData.value = state
-            }
+            loadDetail()
         }
+    }
+
+    private fun loadDetail() {
+        runAsync.handleAsync<DetailUiState>(viewModelScope, {
+            val data = repository.product()
+            val isFavorite = repository.isFavorite()
+            DetailUiState.Base(
+                data.id,
+                data.title,
+                data.description,
+                data.price,
+                data.stock,
+                data.images,
+                isFavorite
+            )
+        }) { liveData.value = it }
     }
 
     fun toggleLike() {
         runAsync.handleAsync<DetailUiState>(viewModelScope, {
-            repository.toggleFavorite(productId)
-
-            val data = repository.product(productId)
-            val isFavorite = repository.isFavorite(productId)
-
+            repository.toggleFavorite()
+            val data = repository.product()
+            val isFavorite = repository.isFavorite()
             DetailUiState.Base(
-                id = data.id,
-                title = data.title,
-                description = data.description,
-                price = data.price,
-                stock = data.stock,
-                images = data.images,
-                isFavorite = isFavorite
+                data.id,
+                data.title,
+                data.description,
+                data.price,
+                data.stock,
+                data.images,
+                isFavorite
             )
-        }) { state ->
-            liveData.value = state
-        }
+        }) { liveData.value = it }
     }
 }

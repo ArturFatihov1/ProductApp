@@ -1,26 +1,35 @@
 package com.example.productapp.detail
 
-import com.example.productapp.core.ProductData
+import com.example.productapp.core.IntCache
+import com.example.productapp.load.cache.ProductDao
+import com.example.productapp.load.cache.toData
+import com.example.productapp.product.ProductData
 
 
 interface DetailRepository {
-    suspend fun product(id: Int): ProductData
-    suspend fun isFavorite(id: Int): Boolean
-    suspend fun toggleFavorite(id: Int)
+    suspend fun product(): ProductData
+    suspend fun isFavorite(): Boolean
+    suspend fun toggleFavorite()
+    fun saveId(id: Int)
 
     class Base(
-        private val dao: ProductDao
+        private val dao: ProductDao,
+        private val productIdCache: IntCache
     ) : DetailRepository {
 
-        override suspend fun product(id: Int): ProductData {
+        override fun saveId(id: Int) = productIdCache.save(id)
+
+        override suspend fun product(): ProductData {
+            val id = productIdCache.read()
             return dao.productById(id).toData()
         }
 
-        override suspend fun isFavorite(id: Int): Boolean {
-            return dao.isProductFavorite(id)
+        override suspend fun isFavorite(): Boolean {
+            return dao.isProductFavorite(productIdCache.read())
         }
 
-        override suspend fun toggleFavorite(id: Int) {
+        override suspend fun toggleFavorite() {
+            val id = productIdCache.read()
             val current = dao.isProductFavorite(id)
             dao.updateFavoriteStatus(id, !current)
         }

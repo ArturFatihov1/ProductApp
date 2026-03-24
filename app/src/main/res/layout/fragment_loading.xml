@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <com.example.productapp.views.progress.LoadView
@@ -18,7 +19,7 @@
         android:text="@string/incorrect_loading"
         android:textColor="@color/redLike" />
 
-    <Button
+    <com.example.productapp.views.retry.RetryButtonView
         android:id="@+id/retryButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
