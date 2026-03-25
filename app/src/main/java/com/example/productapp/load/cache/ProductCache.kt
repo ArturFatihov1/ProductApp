@@ -3,6 +3,7 @@ package com.example.productapp.load.cache
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.productapp.product.ProductData
 
 @Entity(tableName = "products_table")
 data class ProductCache(
@@ -21,4 +22,13 @@ data class ProductCache(
     val images: String,
     @ColumnInfo("isFavorite")
     val isFavorite: Boolean = false
+)
+
+fun ProductCache.toData() = ProductData(
+    id = id,
+    title = title,
+    description = description,
+    price = price,
+    stock = stock,
+    images = images.split("|")
 )

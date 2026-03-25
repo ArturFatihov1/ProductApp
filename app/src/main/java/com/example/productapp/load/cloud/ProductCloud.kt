@@ -1,5 +1,6 @@
 package com.example.productapp.load.cloud
 
+import com.example.productapp.load.cache.ProductCache
 import com.google.gson.annotations.SerializedName
 
 data class ProductCloud(
@@ -15,4 +16,13 @@ data class ProductCloud(
     val stock: Int,
     @SerializedName("images")
     val images: List<String>
+)
+
+fun ProductCloud.toCache() = ProductCache(
+    id = id,
+    title = title,
+    description = description,
+    price = price,
+    stock = stock,
+    images = images.joinToString("|")
 )

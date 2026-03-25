@@ -4,6 +4,10 @@
     android:id="@+id/detailLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="20dp"
+    android:background="@android:color/white"
+    android:clickable="true"
+    android:focusable="true"
     android:orientation="vertical">
 
     <androidx.core.widget.NestedScrollView
@@ -20,10 +24,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
+                <com.example.productapp.views.image.ProductImage
                     android:id="@+id/imageDetail"
                     android:layout_width="match_parent"
-                    android:layout_height="260dp" />
+                    android:layout_height="260dp"
+                    android:scaleType="centerCrop" />
 
                 <LinearLayout
                     android:id="@+id/detailHeader"
@@ -46,7 +51,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
 
-                    <ImageButton
+                    <com.example.productapp.views.imageButton.LikeImageButton
                         android:id="@+id/recipeLike"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -88,6 +93,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     android:text="15.16"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textSize="16sp" />
+
+                <com.example.productapp.views.text.TextView
+                    android:id="@+id/stock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:text="stock"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
                     android:textSize="16sp" />
 

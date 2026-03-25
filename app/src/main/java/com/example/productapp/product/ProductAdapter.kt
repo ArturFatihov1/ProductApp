@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.productapp.R
 import com.example.productapp.databinding.ItemProductLayoutBinding
+import com.example.productapp.views.imageButton.UpdateLikeIcon
 import com.example.productapp.views.text.UpdateText
 
 class ProductAdapter(
-    private val onProductClick: (Int) -> Unit,
-    private val onLikeClick: (Int) -> Unit
+    private val listener: ProductClickListener,
 ) : ListAdapter<ProductItemUiState, ProductAdapter.ProductViewHolder>(ProductDiffCallback()),
     UpdateProductList {
 
@@ -20,22 +20,28 @@ class ProductAdapter(
         submitList(list)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-        return ProductViewHolder(ItemProductLayoutBinding.inflate(LayoutInflater.from(parent.context)))
-    }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
+        val binding = ItemProductLayoutBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+        return ProductViewHolder(binding)
+    }
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
+
 
     inner class ProductViewHolder(private val binding: ItemProductLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
 
         fun bind(item: ProductItemUiState) {
-            binding.itemView.setOnClickListener { onProductClick(item.id) }
-            binding.likeButton.setOnClickListener { onLikeClick(item.id) }
-
+            binding.itemView.setOnClickListener { listener.click(item.id) }
+            binding.likeButton.setOnClickListener { listener.onLikeClick(item.id) }
+            item.showImage(binding.imageProduct)
             item.show(
                 titleView = object : UpdateText {
                     override fun update(text: String) {
@@ -73,4 +79,9 @@ class ProductDiffCallback : DiffUtil.ItemCallback<ProductItemUiState>() {
     ): Boolean {
         return oldItem.isContentSame(newItem)
     }
+}
+
+interface ProductClickListener {
+    fun click(id: Int)
+    fun onLikeClick(id: Int)
 }

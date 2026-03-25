@@ -53,8 +53,8 @@ android {
 dependencies {
     implementation(libs.androidx.room.ktx)
     androidTestImplementation(libs.androidx.room.testing)
-    ksp(libs.androidx.room.compiler)
 
+    ksp(libs.androidx.room.compiler)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
@@ -66,8 +66,20 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
     implementation(libs.gson)
-    implementation(libs.lifecycle.viewmodel.ktx)
-    implementation(libs.lifecycle.livedata.ktx)
+    implementation(libs.koin.core)
+
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+
+    implementation(libs.insert.koin.koin.android)
+    implementation(project.dependencies.platform("io.insert-koin:koin-bom:3.5.6"))
+    implementation(libs.insert.koin.koin.core)
+    implementation(libs.coil)
+    implementation(libs.glide)
+
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     testImplementation(kotlin("test"))

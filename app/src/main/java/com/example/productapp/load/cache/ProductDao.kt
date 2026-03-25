@@ -8,7 +8,7 @@ import androidx.room.Query
 @Dao
 interface ProductDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun saveProducts(products: List<ProductCache>)
 
     @Query("SELECT * FROM products_table")
@@ -23,8 +23,8 @@ interface ProductDao {
     @Query("SELECT * FROM products_table WHERE id = :id")
     suspend fun productById(id: Int): ProductCache
 
-    @Query("UPDATE products_table SET isFavorite = :isFavorite WHERE id = :id")
-    suspend fun updateFavoriteStatus(id: Int, isFavorite: Boolean)
+    @Query("UPDATE products_table SET isFavorite = :status WHERE id = :id")
+    suspend fun updateFavoriteStatus(id: Int, status: Boolean)
 
     @Query("SELECT isFavorite FROM products_table WHERE id = :id")
     suspend fun isProductFavorite(id: Int): Boolean
