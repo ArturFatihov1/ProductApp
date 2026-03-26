@@ -4,17 +4,17 @@ package com.example.productapp.di
 import android.content.Context
 import com.example.productapp.core.IntCache
 import com.example.productapp.core.RunAsync
-import com.example.productapp.detail.DetailRepository
-import com.example.productapp.detail.DetailViewModel
-import com.example.productapp.favorite.FavoriteRepository
-import com.example.productapp.favorite.FavoriteViewModel
+import com.example.productapp.detail.data.DetailRepository
+import com.example.productapp.detail.presentation.DetailViewModel
+import com.example.productapp.favorite.data.FavoriteRepository
+import com.example.productapp.favorite.presentation.FavoriteViewModel
 import com.example.productapp.load.cache.CacheModule
 import com.example.productapp.load.cloud.ProductCloudDataSource
 import com.example.productapp.load.cloud.ProductService
 import com.example.productapp.load.data.LoadRepository
 import com.example.productapp.load.presentation.LoadViewModel
-import com.example.productapp.product.ProductListViewModel
 import com.example.productapp.product.data.ProductRepository
+import com.example.productapp.product.presentation.ProductListViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -51,9 +51,8 @@ val appModule = module {
         ProductListViewModel(
             repository = get(),
             runAsync = get(),
-            detailRepository = get()
         )
     }
-    viewModel { FavoriteViewModel(get(), get(), get()) }
+    viewModel { FavoriteViewModel(get(), get()) }
     viewModel { DetailViewModel(repository = get(), runAsync = get()) }
 }

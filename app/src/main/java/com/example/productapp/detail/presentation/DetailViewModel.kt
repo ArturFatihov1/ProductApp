@@ -1,9 +1,10 @@
-package com.example.productapp.detail
+package com.example.productapp.detail.presentation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.productapp.core.RunAsync
+import com.example.productapp.detail.data.DetailRepository
 
 class DetailViewModel(
     private val repository: DetailRepository,
@@ -18,7 +19,7 @@ class DetailViewModel(
         }
     }
 
-    private fun loadDetail() {
+    fun loadDetail() {
         runAsync.handleAsync<DetailUiState>(viewModelScope, {
             val data = repository.product()
             val isFavorite = repository.isFavorite()

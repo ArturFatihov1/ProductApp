@@ -1,5 +1,8 @@
 package com.example.productapp.favorite
 
+import com.example.productapp.favorite.data.FavoriteRepository
+import com.example.productapp.favorite.presentation.FavoriteUiState
+import com.example.productapp.favorite.presentation.FavoriteViewModel
 import com.example.productapp.product.Product
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.runBlocking

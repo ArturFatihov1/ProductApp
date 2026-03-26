@@ -28,7 +28,7 @@ interface ProductItemUiState {
 
         override fun show(titleView: UpdateText, priceView: UpdateText, likeIcon: UpdateLikeIcon) {
             titleView.update(title)
-            priceView.update(price)
+            priceView.update("$price $")
             likeIcon.update(false)
         }
 
@@ -51,7 +51,7 @@ interface ProductItemUiState {
 
         override fun show(titleView: UpdateText, priceView: UpdateText, likeIcon: UpdateLikeIcon) {
             titleView.update(title)
-            priceView.update(price)
+            priceView.update("$price $")
             likeIcon.update(true)
         }
 

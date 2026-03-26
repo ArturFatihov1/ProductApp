@@ -1,65 +1,35 @@
 package com.example.productapp.favorite
 
-import android.view.View
-import android.widget.LinearLayout
-import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.Visibility
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility
 import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withParent
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import com.example.productapp.Product
 import com.example.productapp.R
 import com.example.productapp.core.ButtonUi
 import com.example.productapp.product.ProductListUi
-import org.hamcrest.Matcher
 
-class FavoritePage(products: List<Product>) {
+class FavoritePage(private val products: List<Product> = emptyList()) {
 
-    private val containerIdMatcher: Matcher<View> = withParent(withId(R.id.favoriteLayout))
-    private val classTypeMatcher: Matcher<View> =
-        withParent(isAssignableFrom(LinearLayout::class.java))
-
-    private val backButton = ButtonUi(
-        id = R.id.backButton,
-        containerIdMatcher = containerIdMatcher,
-        classTypeMatcher = classTypeMatcher
-    )
-
-    private val headerUi = FavoriteTextUi(
-        id = R.id.header,
-        text = R.string.headerFavorite,
-        containerIdMatcher = containerIdMatcher,
-        classTypeMatcher = classTypeMatcher
-    )
-    private val emptyFavorite = FavoriteTextUi(
-        id = R.id.emptyText,
-        text = R.string.emptyFavorite,
-        containerIdMatcher = containerIdMatcher,
-        classTypeMatcher = classTypeMatcher
-    )
-
-    private val productListUi = ProductListUi(
-        id = R.id.productList,
-        items = products,
-        containerIdMatcher = containerIdMatcher,
-        classTypeMatcher = classTypeMatcher
-    )
-
+    private val backButton = ButtonUi(R.id.backButton)
+    private val productListUi = ProductListUi(R.id.productList, products)
 
     fun assertFavoritesState() {
         backButton.assertVisible()
-        headerUi.assertVisible()
+        onView(withText(R.string.headerFavorite)).check(matches(isDisplayed()))
         productListUi.assertVisible()
-        emptyFavorite.assertNotVisible()
-    }
-
-    fun clickFirstRecipe() {
-        productListUi.clickFirstProduct()
+        onView(withId(R.id.emptyText)).check(matches(withEffectiveVisibility(Visibility.GONE)))
     }
 
     fun assertFavoritesEmptyState() {
         backButton.assertVisible()
-        headerUi.assertVisible()
+        onView(withText(R.string.headerFavorite)).check(matches(isDisplayed()))
         productListUi.assertNotVisible()
-        emptyFavorite.assertVisible()
+        onView(withId(R.id.emptyText)).check(matches(isDisplayed()))
     }
 
+    fun clickFirstRecipe() = productListUi.clickFirstProduct()
 }

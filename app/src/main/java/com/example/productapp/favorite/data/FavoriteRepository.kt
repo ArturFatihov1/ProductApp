@@ -1,4 +1,4 @@
-package com.example.productapp.favorite
+package com.example.productapp.favorite.data
 
 import com.example.productapp.load.cache.ProductDao
 import com.example.productapp.load.cache.toData

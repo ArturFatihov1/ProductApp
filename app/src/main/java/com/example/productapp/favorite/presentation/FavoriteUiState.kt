@@ -1,6 +1,5 @@
-package com.example.productapp.favorite
+package com.example.productapp.favorite.presentation
 
-import com.example.productapp.detail.presentation.NavigateToDetail
 import com.example.productapp.product.presentation.ProductItemUiState
 import com.example.productapp.product.presentation.UpdateProductList
 import com.example.productapp.views.visibility.VisibilityText
@@ -12,8 +11,6 @@ interface FavoriteUiState {
         emptyStateView: VisibilityText
     ) = Unit
 
-    fun navigateToDetail(navigate: NavigateToDetail) = Unit
-
     data class Base(
         val favorites: List<ProductItemUiState>
     ) : FavoriteUiState {
@@ -22,12 +19,6 @@ interface FavoriteUiState {
             val visibility =
                 if (favorites.isEmpty()) VisibilityUiState.Visible else VisibilityUiState.Gone
             emptyStateView.update(visibility)
-        }
-    }
-
-    data class DetailLoad(private val productId: Int) : FavoriteUiState {
-        override fun navigateToDetail(navigate: NavigateToDetail) {
-            navigate.navigateToDetail(productId)
         }
     }
 }

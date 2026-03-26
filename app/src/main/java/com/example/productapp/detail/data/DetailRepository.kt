@@ -1,10 +1,9 @@
-package com.example.productapp.detail
+package com.example.productapp.detail.data
 
 import com.example.productapp.core.IntCache
 import com.example.productapp.load.cache.ProductDao
 import com.example.productapp.load.cache.toData
 import com.example.productapp.product.data.ProductData
-
 
 interface DetailRepository {
     suspend fun product(): ProductData

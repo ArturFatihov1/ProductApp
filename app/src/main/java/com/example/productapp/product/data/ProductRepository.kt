@@ -26,6 +26,7 @@ interface ProductRepository {
                 val response = service.loadProducts().execute().body()
                 response?.products?.let { dao.saveProducts(it.map { cloud -> cloud.toCache() }) }
             } catch (e: Exception) {
+                throw IllegalStateException("Failed to load products from network", e)
             }
             return dao.allProducts().map { it.toData() }
         }
@@ -35,6 +36,7 @@ interface ProductRepository {
                 val response = service.searchProducts(query).execute().body()
                 response?.products?.let { dao.saveProducts(it.map { cloud -> cloud.toCache() }) }
             } catch (e: Exception) {
+                throw IllegalStateException("Search request failed", e)
             }
             return dao.searchProducts(query).map { it.toData() }
         }
@@ -44,6 +46,7 @@ interface ProductRepository {
                 val response = service.getProductsByCategory(category).execute().body()
                 response?.products?.let { dao.saveProducts(it.map { cloud -> cloud.toCache() }) }
             } catch (e: Exception) {
+                throw IllegalStateException("Failed to load products for category: $category", e)
             }
             return dao.productsByCategory(category).map { it.toData() }
         }
@@ -52,7 +55,7 @@ interface ProductRepository {
             return try {
                 service.getCategories().execute().body() ?: emptyList()
             } catch (e: Exception) {
-                emptyList()
+                throw IllegalStateException("Failed to fetch categories", e)
             }
         }
 
