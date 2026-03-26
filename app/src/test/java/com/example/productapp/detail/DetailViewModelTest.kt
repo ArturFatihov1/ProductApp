@@ -1,5 +1,8 @@
 package com.example.productapp.detail
 
+import com.example.productapp.detail.data.DetailRepository
+import com.example.productapp.detail.presentation.DetailUiState
+import com.example.productapp.detail.presentation.DetailViewModel
 import com.example.productapp.product.Product
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.runBlocking

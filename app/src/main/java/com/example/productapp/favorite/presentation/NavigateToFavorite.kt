@@ -1,4 +1,4 @@
-package com.example.productapp.favorite
+package com.example.productapp.favorite.presentation
 
 interface NavigateToFavorite {
     fun navigateToFavorite()

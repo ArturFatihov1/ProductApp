@@ -6,7 +6,6 @@ import com.example.productapp.R
 
 interface CacheModule {
     fun dao(): ProductDao
-    fun clearDatabase(): ClearDatabase
 
     class Base(applicationContext: Context) : CacheModule {
         private val database by lazy {
@@ -18,6 +17,5 @@ interface CacheModule {
         }
 
         override fun dao(): ProductDao = database.dao()
-        override fun clearDatabase(): ClearDatabase = database
     }
 }

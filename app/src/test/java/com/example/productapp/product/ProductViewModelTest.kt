@@ -1,5 +1,8 @@
 package com.example.productapp.product
 
+import com.example.productapp.product.data.ProductRepository
+import com.example.productapp.product.presentation.ProductListUiState
+import com.example.productapp.product.presentation.ProductUiState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals

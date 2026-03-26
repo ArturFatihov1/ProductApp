@@ -3,14 +3,11 @@ package com.example.productapp.favorite.presentation
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import com.example.productapp.Navigate
 import com.example.productapp.R
 import com.example.productapp.databinding.FragmentFavoriteBinding
-import com.example.productapp.detail.presentation.NavigateToDetail
-import com.example.productapp.favorite.FavoriteViewModel
-import com.example.productapp.product.ProductAdapter
-import com.example.productapp.product.ProductClickListener
-import com.example.productapp.product.UpdateProductList
+import com.example.productapp.product.presentation.ProductAdapter
+import com.example.productapp.product.presentation.ProductClickListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FavoriteFragment : Fragment(R.layout.fragment_favorite) {
@@ -25,38 +22,23 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite) {
 
         val adapter = ProductAdapter(object : ProductClickListener {
             override fun click(id: Int) {
-                viewModel.openDetail(id)
+                (requireActivity() as Navigate).navigateToDetail(id)
             }
 
             override fun onLikeClick(id: Int) {
                 viewModel.toggleLike(id)
             }
         })
+
         binding.productList.adapter = adapter
-
-        val productListWrapper: UpdateProductList = adapter
-
         viewModel.liveData.observe(viewLifecycleOwner) { state ->
-            // 1. Отображаем данные
             state.show(adapter, binding.emptyText)
-
-            // 2. Обрабатываем переход, если UiState — это DetailLoad
-            // Но лучше сделать через navigationCommand, как в ProductListFragment
-            state.navigateToDetail(object : NavigateToDetail {
-                override fun navigateToDetail(productId: Int) {
-                    findNavController().navigate(R.id.action_favorite_to_detail)
-                    // Здесь тоже желательно добавить сброс стейта во ViewModel
-                }
-            })
         }
 
         binding.backButton.setOnClickListener {
-            val success = findNavController().popBackStack()
-
-            if (!success) {
-                requireActivity().onBackPressedDispatcher.onBackPressed()
-            }
+            requireActivity().onBackPressedDispatcher.onBackPressed()
         }
+
         viewModel.init()
     }
 

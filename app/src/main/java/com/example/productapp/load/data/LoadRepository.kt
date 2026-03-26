@@ -1,4 +1,4 @@
-package com.example.productapp.load
+package com.example.productapp.load.data
 
 
 import com.example.productapp.load.cache.ProductDao

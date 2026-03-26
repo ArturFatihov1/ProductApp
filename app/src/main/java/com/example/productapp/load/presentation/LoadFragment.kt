@@ -5,7 +5,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.productapp.R
 import com.example.productapp.databinding.FragmentLoadingBinding
-import com.example.productapp.load.LoadViewModel
 import com.example.productapp.product.presentation.NavigateToProductList
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -19,6 +18,7 @@ class LoadFragment : Fragment(R.layout.fragment_loading) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentLoadingBinding.bind(view)
 
+
         viewModel.liveData.observe(viewLifecycleOwner) { uiState ->
             uiState.show(
                 binding.errorText,
@@ -29,10 +29,10 @@ class LoadFragment : Fragment(R.layout.fragment_loading) {
         }
 
         binding.retryButton.setOnClickListener {
-            viewModel.init()
+            viewModel.load()
         }
 
-        viewModel.init(isFirstRun = savedInstanceState == null)
+        viewModel.load(isFirstRun = savedInstanceState == null)
     }
 
     override fun onDestroyView() {

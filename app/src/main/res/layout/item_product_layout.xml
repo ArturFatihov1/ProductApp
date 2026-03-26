@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_launcher_background" />
 
-        <ImageButton
+        <com.example.productapp.views.imageButton.LikeImageButton
             android:id="@+id/likeButton"
             android:layout_width="48dp"
             android:layout_height="48dp"

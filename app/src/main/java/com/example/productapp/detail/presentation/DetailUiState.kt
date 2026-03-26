@@ -1,4 +1,4 @@
-package com.example.productapp.detail
+package com.example.productapp.detail.presentation
 
 import com.example.productapp.views.image.UpdateImages
 import com.example.productapp.views.imageButton.UpdateLikeIcon

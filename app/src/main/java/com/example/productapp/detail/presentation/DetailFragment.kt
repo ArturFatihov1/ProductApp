@@ -3,10 +3,8 @@ package com.example.productapp.detail.presentation
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.example.productapp.R
 import com.example.productapp.databinding.FragmentDetailBinding
-import com.example.productapp.detail.DetailViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailFragment : Fragment(R.layout.fragment_detail) {
@@ -21,17 +19,22 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
         viewModel.liveData.observe(viewLifecycleOwner) { uiState ->
             uiState.show(
-                binding.title, binding.description, binding.price,
-                binding.stock, binding.imageDetail, binding.recipeLike
+                titleView = binding.title,
+                descriptionView = binding.description,
+                priceView = binding.price,
+                stockStatusView = binding.stock,
+                imagesView = binding.imageDetail,
+                likeIcon = binding.recipeLike
             )
         }
 
-        // КНОПКА НАЗАД: Теперь она точно сработает
         binding.backButton.setOnClickListener {
-            findNavController().popBackStack()
+            requireActivity().onBackPressedDispatcher.onBackPressed()
         }
 
-        binding.recipeLike.setOnClickListener { viewModel.toggleLike() }
+        binding.recipeLike.setOnClickListener {
+            viewModel.toggleLike()
+        }
 
         viewModel.init()
     }

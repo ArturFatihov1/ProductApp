@@ -1,4 +1,4 @@
-package com.example.productapp.load
+package com.example.productapp.load.presentation
 
 import com.example.productapp.R
 import com.example.productapp.product.presentation.NavigateToProductList

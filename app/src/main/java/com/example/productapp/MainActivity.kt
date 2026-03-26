@@ -4,14 +4,17 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.example.productapp.detail.data.DetailRepository
 import com.example.productapp.detail.presentation.NavigateToDetail
-import com.example.productapp.favorite.NavigateToFavorite
+import com.example.productapp.favorite.presentation.NavigateToFavorite
 import com.example.productapp.load.presentation.NavigateToLoad
 import com.example.productapp.product.presentation.NavigateToProductList
+import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity(), Navigate {
 
     private lateinit var navController: NavController
+    private val detailRepository: DetailRepository by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +34,7 @@ class MainActivity : AppCompatActivity(), Navigate {
     }
 
     override fun navigateToDetail(productId: Int) {
+        detailRepository.saveId(productId)
         navController.navigate(R.id.action_productList_to_detail)
     }
 

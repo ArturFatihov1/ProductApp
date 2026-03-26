@@ -3,7 +3,6 @@ package com.example.productapp.detail
 import android.view.View
 import android.widget.ImageButton
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -24,12 +23,14 @@ class RecipeLikeUi(
             withId(id),
             isAssignableFrom(ImageButton::class.java),
             withParent(withId(R.id.detailHeader)),
+            containerIdMatcher,
             classTypeMatcher
         )
     )
 ) {
+
     fun click() {
-        interaction.perform(ViewActions.click())
+        interaction.perform(androidx.test.espresso.action.ViewActions.click())
     }
 
     fun assertIsLiked() {
