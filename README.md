@@ -1,3 +1,3 @@
 Test project
 
-stack: XML, Kotlim, MVVM, LiveData, NavigationComponent, Coroutines, Koin, CustomView, Retrofit, Room, SharedPreference 
+stack: XML, Kotlin, MVVM, LiveData, NavigationComponent, Coroutines, Koin, CustomView, Retrofit, Room, SharedPreference 
