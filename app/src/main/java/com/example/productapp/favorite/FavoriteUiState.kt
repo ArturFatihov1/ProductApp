@@ -1,8 +1,8 @@
 package com.example.productapp.favorite
 
 import com.example.productapp.detail.presentation.NavigateToDetail
-import com.example.productapp.product.ProductItemUiState
-import com.example.productapp.product.UpdateProductList
+import com.example.productapp.product.presentation.ProductItemUiState
+import com.example.productapp.product.presentation.UpdateProductList
 import com.example.productapp.views.visibility.VisibilityText
 import com.example.productapp.views.visibility.VisibilityUiState
 

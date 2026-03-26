@@ -12,10 +12,17 @@ data class ProductCloud(
     val description: String,
     @SerializedName("price")
     val price: Double,
+    @SerializedName("category")
+    val category: String,
     @SerializedName("stock")
     val stock: Int,
     @SerializedName("images")
     val images: List<String>
+)
+
+data class CategoryCloud(
+    @SerializedName("slug") val slug: String,
+    @SerializedName("name") val name: String
 )
 
 fun ProductCloud.toCache() = ProductCache(
@@ -23,6 +30,7 @@ fun ProductCloud.toCache() = ProductCache(
     title = title,
     description = description,
     price = price,
+    category = category,
     stock = stock,
     images = images.joinToString("|")
 )

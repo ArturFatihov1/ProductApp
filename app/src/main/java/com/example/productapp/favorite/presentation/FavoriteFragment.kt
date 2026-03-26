@@ -8,9 +8,9 @@ import com.example.productapp.R
 import com.example.productapp.databinding.FragmentFavoriteBinding
 import com.example.productapp.detail.presentation.NavigateToDetail
 import com.example.productapp.favorite.FavoriteViewModel
-import com.example.productapp.product.ProductAdapter
-import com.example.productapp.product.ProductClickListener
-import com.example.productapp.product.UpdateProductList
+import com.example.productapp.product.presentation.ProductAdapter
+import com.example.productapp.product.presentation.ProductClickListener
+import com.example.productapp.product.presentation.UpdateProductList
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FavoriteFragment : Fragment(R.layout.fragment_favorite) {

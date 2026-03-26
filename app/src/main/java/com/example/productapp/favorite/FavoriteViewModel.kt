@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.productapp.core.RunAsync
 import com.example.productapp.detail.DetailRepository
-import com.example.productapp.product.ProductItemUiState
+import com.example.productapp.product.presentation.ProductItemUiState
 
 class FavoriteViewModel(
     private val repository: FavoriteRepository,

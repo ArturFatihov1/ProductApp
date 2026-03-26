@@ -3,7 +3,7 @@ package com.example.productapp.detail
 import com.example.productapp.core.IntCache
 import com.example.productapp.load.cache.ProductDao
 import com.example.productapp.load.cache.toData
-import com.example.productapp.product.ProductData
+import com.example.productapp.product.data.ProductData
 
 
 interface DetailRepository {
