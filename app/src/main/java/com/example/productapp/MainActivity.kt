@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity(), Navigate {
     }
 
     override fun navigateToProductList() {
-        navController.navigate(R.id.action_load_to_productList)
+        navController.navigate(R.id.productListFragment)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -35,11 +35,11 @@ class MainActivity : AppCompatActivity(), Navigate {
 
     override fun navigateToDetail(productId: Int) {
         detailRepository.saveId(productId)
-        navController.navigate(R.id.action_productList_to_detail)
+        navController.navigate(R.id.detailFragment)
     }
 
     override fun navigateToFavorite() {
-        navController.navigate(R.id.action_productList_to_favorite)
+        navController.navigate(R.id.favoriteFragment)
     }
 
     override fun navigateToLoad() {
