@@ -5,7 +5,7 @@ import com.example.productapp.views.imageButton.UpdateLikeIcon
 import com.example.productapp.views.text.UpdateText
 
 
-interface DetailUiState {
+sealed interface DetailUiState {
     fun show(
         titleView: UpdateText,
         descriptionView: UpdateText,

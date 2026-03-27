@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.productapp.core.RunAsync
-import com.example.productapp.load.cloud.CategoryCloud
+import com.example.productapp.load.cloud.CategoryDTO
 import com.example.productapp.product.data.ProductData
 import com.example.productapp.product.data.ProductRepository
 
@@ -14,12 +14,12 @@ class ProductListViewModel(
 ) : ViewModel() {
 
     val liveData = MutableLiveData<ProductListUiState>()
-    val categoriesLiveData = MutableLiveData<List<CategoryCloud>>()
+    val categoriesLiveData = MutableLiveData<List<CategoryDTO>>()
 
     fun init() {
         if (categoriesLiveData.value == null) {
             runAsync.handleAsync(viewModelScope, {
-                listOf(CategoryCloud("All", "Все категории")) + repository.getCategories()
+                listOf(CategoryDTO("All", "Все категории")) + repository.getCategories()
             }) { categoriesLiveData.value = it }
         }
         if (liveData.value == null) fetchProducts()

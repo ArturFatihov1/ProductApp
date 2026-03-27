@@ -1,82 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/productListLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="18dp"
     android:background="@color/white"
-    android:orientation="vertical">
+    android:padding="16dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/favoriteContainer"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="18dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="4dp">
-
-            <ImageButton
-                android:id="@+id/favoriteButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Избранное"
-                android:src="@drawable/ic_favorite_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.example.productapp.views.text.TextView
-                android:id="@+id/favoriteCountTextView"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:gravity="center"
-                android:text="0"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintCircle="@+id/favoriteButton"
-                app:layout_constraintCircleAngle="45"
-                app:layout_constraintCircleRadius="20dp"
-                app:layout_constraintEnd_toEndOf="@+id/favoriteButton"
-                app:layout_constraintTop_toTopOf="@+id/favoriteButton" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        android:padding="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/searchInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/searchInput">
 
         <ImageButton
-            android:id="@+id/filterButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginEnd="8dp"
+            android:id="@+id/favoriteButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Фильтр категорий"
-            android:src="@android:drawable/ic_menu_sort_by_size"
-            app:tint="@color/black" />
+            android:contentDescription="Избранное"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_favorite_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <com.example.productapp.views.text.SearchEditText
-            android:id="@+id/searchInput"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@android:drawable/editbox_background"
-            android:hint="@string/search_hint"
-            android:padding="12dp"
-            android:textSize="16sp" />
+        <com.example.productapp.views.text.TextView
+            android:id="@+id/favoriteCountTextView"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintCircle="@+id/favoriteButton"
+            app:layout_constraintCircleAngle="45"
+            app:layout_constraintCircleRadius="18dp"
+            app:layout_constraintEnd_toEndOf="@+id/favoriteButton"
+            app:layout_constraintTop_toTopOf="@+id/favoriteButton"
+            tools:text="1" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageButton
+        android:id="@+id/filterButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Фильтр"
+        android:scaleType="centerInside"
+        android:src="@android:drawable/ic_menu_sort_by_size"
+        app:layout_constraintBottom_toBottomOf="@+id/searchInput"
+        app:layout_constraintStart_toEndOf="@+id/favoriteContainer"
+        app:layout_constraintTop_toTopOf="@+id/searchInput"
+        app:tint="@color/black" />
+
+    <com.example.productapp.views.text.SearchEditText
+        android:id="@+id/searchInput"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="12dp"
+        android:background="@android:drawable/editbox_background"
+        android:hint="@string/search_hint"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:padding="12dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/filterButton"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/productList"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
+        android:layout_marginTop="16dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchInput"
         tools:listitem="@layout/item_product_layout" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

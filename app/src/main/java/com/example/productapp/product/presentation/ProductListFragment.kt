@@ -12,7 +12,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class ProductListFragment : Fragment(R.layout.fragment_product_list) {
 
     private val viewModel: ProductListViewModel by viewModel()
-    private var searchJob: kotlinx.coroutines.Job? = null
     private var _binding: FragmentProductListBinding? = null
     private val binding get() = _binding!!
 

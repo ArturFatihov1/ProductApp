@@ -4,7 +4,7 @@ import com.example.productapp.views.image.UpdateImages
 import com.example.productapp.views.imageButton.UpdateLikeIcon
 import com.example.productapp.views.text.UpdateText
 
-interface ProductItemUiState {
+sealed interface ProductItemUiState {
 
     val id: Int
 

@@ -2,7 +2,7 @@ package com.example.productapp.product.presentation
 
 import com.example.productapp.views.text.UpdateText
 
-interface ProductListUiState {
+sealed interface ProductListUiState {
     fun update(searchInput: UpdateText, productList: UpdateProductList, favCountView: UpdateText)
 
     data class Base(
