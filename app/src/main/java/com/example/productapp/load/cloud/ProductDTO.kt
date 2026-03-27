@@ -3,7 +3,7 @@ package com.example.productapp.load.cloud
 import com.example.productapp.load.cache.ProductCache
 import com.google.gson.annotations.SerializedName
 
-data class ProductCloud(
+data class ProductDTO(
     @SerializedName("id")
     val id: Int,
     @SerializedName("title")
@@ -20,12 +20,12 @@ data class ProductCloud(
     val images: List<String>
 )
 
-data class CategoryCloud(
+data class CategoryDTO(
     @SerializedName("slug") val slug: String,
     @SerializedName("name") val name: String
 )
 
-fun ProductCloud.toCache() = ProductCache(
+fun ProductDTO.toCache() = ProductCache(
     id = id,
     title = title,
     description = description,

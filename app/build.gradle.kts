@@ -51,13 +51,14 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.room.ktx)
     androidTestImplementation(libs.androidx.room.testing)
-
+    implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
+    implementation(libs.gson)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -65,12 +66,11 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
-    implementation(libs.gson)
-    implementation(libs.koin.core)
 
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
+    implementation(libs.koin.core)
     implementation(libs.insert.koin.koin.android)
     implementation(project.dependencies.platform("io.insert-koin:koin-bom:3.5.6"))
     implementation(libs.insert.koin.koin.core)
