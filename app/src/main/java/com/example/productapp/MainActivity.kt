@@ -44,8 +44,10 @@ class MainActivity : AppCompatActivity(), Navigate {
     }
 
     override fun navigateToDetail(productId: Int) {
-        detailRepository.saveId(productId)
-        navController.navigate(R.id.detailFragment)
+        val bundle = Bundle().apply {
+            putInt("productId", productId)
+        }
+        navController.navigate(R.id.detailFragment, bundle)
     }
 
     override fun navigateToFavorite() {
