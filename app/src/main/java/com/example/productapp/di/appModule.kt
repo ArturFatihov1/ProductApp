@@ -2,7 +2,6 @@ package com.example.productapp.di
 
 
 import android.content.Context
-import com.example.productapp.core.IntCache
 import com.example.productapp.core.RunAsync
 import com.example.productapp.detail.data.DetailRepository
 import com.example.productapp.detail.data.DetailRepositoryImpl
@@ -28,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 val appModule = module {
 
     single { get<Context>().getSharedPreferences("products_prefs", Context.MODE_PRIVATE) }
-    single<IntCache> { IntCache.Base(sharedPreferences = get(), key = "current_product_id") }
+
 
     single<RunAsync> { RunAsync.Base() }
 
@@ -49,7 +48,7 @@ val appModule = module {
     single<LoadRepository> { LoadRepositoryImpl(get(), get()) }
     single<ProductRepository> { ProductRepositoryImpl(dao = get(), service = get()) }
     single<FavoriteRepository> { FavoriteRepositoryImpl(get()) }
-    single<DetailRepository> { DetailRepositoryImpl(dao = get(), productIdCache = get()) }
+    single<DetailRepository> { DetailRepositoryImpl(dao = get()) }
 
     viewModel { LoadViewModel(get(), get()) }
     viewModel {

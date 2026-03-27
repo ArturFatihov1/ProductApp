@@ -1,6 +1,7 @@
 package com.example.productapp.detail.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.productapp.R
@@ -17,6 +18,9 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentDetailBinding.bind(view)
 
+        val productId = arguments?.getInt("productId") ?: -1
+        Log.d("DetailFragment", "Received ID: $productId")
+
         viewModel.liveData.observe(viewLifecycleOwner) { uiState ->
             uiState.show(
                 titleView = binding.title,
@@ -28,15 +32,19 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             )
         }
 
+        if (productId != -1) {
+            viewModel.init(productId)
+        } else {
+            Log.e("DetailFragment", "Invalid Product ID!")
+        }
+
         binding.backButton.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
 
         binding.recipeLike.setOnClickListener {
-            viewModel.toggleLike()
+            viewModel.toggleLike(productId)
         }
-
-        viewModel.init()
     }
 
     override fun onDestroyView() {

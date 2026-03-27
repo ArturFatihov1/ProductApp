@@ -1,6 +1,7 @@
 package com.example.productapp.product.presentation
 
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -34,7 +35,10 @@ class ProductAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ProductItemUiState) {
-            binding.itemView.setOnClickListener { listener.click(item.id) }
+            binding.itemView.setOnClickListener {
+                listener.click(item.id)
+                Log.d("Adapter", "Click triggered for ID: ${item.id}")
+            }
             binding.likeButton.setOnClickListener { listener.onLikeClick(item.id) }
             item.showImage(binding.imageProduct)
             item.show(

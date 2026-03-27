@@ -1,6 +1,7 @@
 package com.example.productapp.product.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -23,14 +24,15 @@ class ProductListFragment : Fragment(R.layout.fragment_product_list) {
 
         val adapter = ProductAdapter(object : ProductClickListener {
             override fun click(id: Int) {
-                (requireActivity() as Navigate).navigateToDetail(id)
+                Log.d("ProductListFragment", "Passing click to Activity: $id")
+
+                (activity as? Navigate)?.navigateToDetail(id)
             }
 
             override fun onLikeClick(id: Int) {
                 viewModel.toggleLike(id)
             }
         })
-
         binding.productList.adapter = adapter
         viewModel.liveData.observe(viewLifecycleOwner) { uiState ->
             uiState.update(
