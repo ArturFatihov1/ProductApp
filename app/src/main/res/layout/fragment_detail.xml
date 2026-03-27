@@ -62,7 +62,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageDetail"
-                tools:text="Product title" />
+                tools:text="@string/product_title" />
 
             <com.example.productapp.views.text.TextView
                 android:id="@+id/description"
@@ -74,7 +74,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title"
-                tools:text="Description here..." />
+                tools:text="@string/description_here" />
 
             <com.example.productapp.views.text.TextView
                 android:id="@+id/price"
@@ -95,7 +95,7 @@
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/price"
                 app:layout_constraintTop_toBottomOf="@+id/price"
-                tools:text="Stock: 45" />
+                tools:text="@string/in_stock" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/buyButton"

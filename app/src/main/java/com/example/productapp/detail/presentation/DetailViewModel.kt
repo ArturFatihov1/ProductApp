@@ -13,16 +13,15 @@ class DetailViewModel(
 
     val liveData = MutableLiveData<DetailUiState>()
 
-    fun init() {
-        if (liveData.value == null) {
-            loadDetail()
-        }
+    fun init(productId: Int) {
+        loadDetail(productId)
     }
 
-    fun loadDetail() {
+    fun loadDetail(productId: Int) {
         runAsync.handleAsync<DetailUiState>(viewModelScope, {
-            val data = repository.product()
-            val isFavorite = repository.isFavorite()
+            val data = repository.product(productId)
+            val isFavorite = repository.isFavorite(productId)
+
             DetailUiState.Base(
                 data.id,
                 data.title,
@@ -35,11 +34,12 @@ class DetailViewModel(
         }) { liveData.value = it }
     }
 
-    fun toggleLike() {
+    fun toggleLike(productId: Int) {
         runAsync.handleAsync<DetailUiState>(viewModelScope, {
-            repository.toggleFavorite()
-            val data = repository.product()
-            val isFavorite = repository.isFavorite()
+            repository.toggleFavorite(productId)
+            val data = repository.product(productId)
+            val isFavorite = repository.isFavorite(productId)
+
             DetailUiState.Base(
                 data.id,
                 data.title,
