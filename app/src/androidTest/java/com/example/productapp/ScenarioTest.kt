@@ -16,6 +16,7 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class ScenarioTest {
 
+    //todo fix test
     private lateinit var productListPage: ProductListPage
     private lateinit var detailPage: DetailPage
     private lateinit var favoritePage: FavoritePage

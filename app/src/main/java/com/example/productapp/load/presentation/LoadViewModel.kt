@@ -1,5 +1,6 @@
 package com.example.productapp.load.presentation
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,11 +12,12 @@ class LoadViewModel(
     private val runAsync: RunAsync
 ) : ViewModel() {
 
-    val liveData = MutableLiveData<LoadUiState>()
+    private val _liveData = MutableLiveData<LoadUiState>()
+    val liveData: LiveData<LoadUiState> = _liveData
 
     fun load(isFirstRun: Boolean = true) {
-        if (isFirstRun || liveData.value is LoadUiState.Error) {
-            liveData.value = LoadUiState.Progress
+        if (isFirstRun || _liveData.value is LoadUiState.Error) {
+            _liveData.value = LoadUiState.Progress
 
             runAsync.handleAsync(viewModelScope, {
                 try {
@@ -25,7 +27,7 @@ class LoadViewModel(
                     LoadUiState.ErrorRes()
                 }
             }) { state ->
-                liveData.value = state
+                _liveData.value = state
             }
         }
     }

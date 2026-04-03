@@ -1,5 +1,6 @@
 package com.example.productapp.detail.presentation
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,7 +12,8 @@ class DetailViewModel(
     private val runAsync: RunAsync
 ) : ViewModel() {
 
-    val liveData = MutableLiveData<DetailUiState>()
+    private val _liveData = MutableLiveData<DetailUiState>()
+    val liveData: LiveData<DetailUiState> = _liveData
 
     fun init(productId: Int) {
         loadDetail(productId)
@@ -31,7 +33,7 @@ class DetailViewModel(
                 data.images,
                 isFavorite
             )
-        }) { liveData.value = it }
+        }) { _liveData.value = it }
     }
 
     fun toggleLike(productId: Int) {
@@ -49,6 +51,6 @@ class DetailViewModel(
                 data.images,
                 isFavorite
             )
-        }) { liveData.value = it }
+        }) { _liveData.value = it }
     }
 }
