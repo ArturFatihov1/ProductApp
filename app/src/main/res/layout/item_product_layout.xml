@@ -7,6 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="12dp"
     android:layout_marginVertical="8dp"
+    android:fitsSystemWindows="true"
     app:cardCornerRadius="18dp"
     app:cardElevation="4dp"
     app:cardUseCompatPadding="true">
@@ -74,7 +75,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginEnd="16dp"
             android:backgroundTint="#E0E0E0"
-            android:text="Купить"
+            android:text="@string/buy_button"
             android:textColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title" />

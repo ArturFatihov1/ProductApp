@@ -7,7 +7,7 @@ import com.example.productapp.views.error.UpdateError
 import com.example.productapp.views.visibility.UpdateVisibility
 import com.example.productapp.views.visibility.VisibilityUiState
 
-interface LoadUiState {
+sealed interface LoadUiState {
     fun show(
         errorTextView: UpdateError,
         retryButton: UpdateVisibility,

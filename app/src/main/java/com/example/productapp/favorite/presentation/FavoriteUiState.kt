@@ -5,7 +5,7 @@ import com.example.productapp.product.presentation.UpdateProductList
 import com.example.productapp.views.visibility.VisibilityText
 import com.example.productapp.views.visibility.VisibilityUiState
 
-interface FavoriteUiState {
+sealed interface FavoriteUiState {
     fun show(
         productList: UpdateProductList,
         emptyStateView: VisibilityText
