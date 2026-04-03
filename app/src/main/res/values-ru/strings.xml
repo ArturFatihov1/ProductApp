@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Продукты</string>
+    <string name="retry">Повторить</string>
+    <string name="incorrect_loading">Ошибка при загрузке</string>
+    <string name="headerFavorite">Избранные</string>
+    <string name="emptyFavorite">Нет продуктов в избранных</string>
+    <string name="no_internet_connection">Нет интернета</string>
+    <string name="search_hint">Поиск…</string>
+    <string name="buy_button">Купить</string>
+    <string name="title">Заголовок</string>
+    <string name="product_title">Заголовок продукта</string>
+    <string name="description_here">Описание здесь..</string>
+    <string name="in_stock">В наличие</string>
+</resources>
