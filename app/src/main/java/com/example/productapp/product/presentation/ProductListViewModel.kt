@@ -1,7 +1,9 @@
 package com.example.productapp.product.presentation
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.example.productapp.core.RunAsync
 import com.example.productapp.load.cloud.CategoryDTO
@@ -13,41 +15,44 @@ class ProductListViewModel(
     private val runAsync: RunAsync
 ) : ViewModel() {
 
-    val liveData = MutableLiveData<ProductListUiState>()
-    val categoriesLiveData = MutableLiveData<List<CategoryDTO>>()
+    private val _liveData = MutableLiveData<ProductListUiState>()
+    private val _categoriesLiveData = MutableLiveData<List<CategoryDTO>>()
+
+    val liveData: LiveData<ProductListUiState> = _liveData
+    val categoriesLiveData: LiveData<List<CategoryDTO>> = _categoriesLiveData
 
     fun init() {
         if (categoriesLiveData.value == null) {
             runAsync.handleAsync(viewModelScope, {
                 listOf(CategoryDTO("All", "Все категории")) + repository.getCategories()
-            }) { categoriesLiveData.value = it }
+            }) { _categoriesLiveData.value = it }
         }
-        if (liveData.value == null) fetchProducts()
+        if (_liveData.value == null) fetchProducts()
     }
 
     fun fetchProducts() = runAsync.handleAsync(viewModelScope, {
         mapToState(repository.products())
-    }) { liveData.value = it }
+    }) { _liveData.value = it }
 
     fun search(query: String) = if (query.isEmpty()) fetchProducts() else {
         runAsync.handleAsync(viewModelScope, {
             mapToState(repository.search(query), query)
-        }) { liveData.value = it }
+        }) { _liveData.value = it }
     }
 
     fun filterByCategory(categorySlug: String) = if (categorySlug == "All") fetchProducts() else {
         runAsync.handleAsync(viewModelScope, {
             mapToState(repository.productsByCategory(categorySlug))
-        }) { liveData.value = it }
+        }) { _liveData.value = it }
     }
 
     fun toggleLike(productId: Int) {
-        (liveData.value as? ProductListUiState.Base)?.let { state ->
+        (_liveData.value as? ProductListUiState.Base)?.let { state ->
             val wasLiked = state.products.find { it.id == productId } is ProductItemUiState.Liked
             val newCount = if (wasLiked) state.favoriteCount - 1 else state.favoriteCount + 1
             val updatedList = state.products.map { if (it.id == productId) it.changeLike() else it }
 
-            liveData.value = state.copy(products = updatedList, favoriteCount = newCount)
+            _liveData.value = state.copy(products = updatedList, favoriteCount = newCount)
             runAsync.handleAsync(viewModelScope, { repository.toggleFavorite(productId) }) {}
         }
     }

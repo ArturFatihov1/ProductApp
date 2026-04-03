@@ -1,5 +1,6 @@
 package com.example.productapp.favorite.presentation
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,7 +13,8 @@ class FavoriteViewModel(
     private val runAsync: RunAsync
 ) : ViewModel() {
 
-    val liveData = MutableLiveData<FavoriteUiState>()
+    private val _liveData = MutableLiveData<FavoriteUiState>()
+    val liveData: LiveData<FavoriteUiState> = _liveData
 
     fun init() {
         loadFavorites()
@@ -26,7 +28,7 @@ class FavoriteViewModel(
             }
             FavoriteUiState.Base(uiItems)
         }) { state ->
-            liveData.value = state
+            _liveData.value = state
         }
     }
 
@@ -37,7 +39,7 @@ class FavoriteViewModel(
             val newList = currentItems.filter { it.id != id }
             FavoriteUiState.Base(newList)
         }) { state ->
-            liveData.value = state
+            _liveData.value = state
         }
     }
 }
